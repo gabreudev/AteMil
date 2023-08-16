@@ -19,5 +19,7 @@ public class Correcao {
 
     private String comentario;
 
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
 
 }

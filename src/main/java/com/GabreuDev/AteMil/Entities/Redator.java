@@ -20,6 +20,7 @@ public class Redator {
 
     private String email;
 
+    @OneToMany
     private List<Correcao> correcao;
 
 }

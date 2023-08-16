@@ -16,5 +16,5 @@ public class Corretor {
     private String nome;
 
     private String email;
-    
+
 }
