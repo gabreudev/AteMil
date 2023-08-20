@@ -2,18 +2,16 @@ package com.GabreuDev.AteMil.Services;
 
 import com.GabreuDev.AteMil.Entities.Correcao;
 import com.GabreuDev.AteMil.Entities.Corretor;
-import com.GabreuDev.AteMil.Repositories.CorrecaoRepository;
 import com.GabreuDev.AteMil.Repositories.CorretorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CorretorService {
-    @Autowired
-    private CorretorRepository corretorRepository;
-    @Autowired
-    private CorrecaoService correcaoService;
+    private final CorretorRepository corretorRepository;
+
+    private final CorrecaoService correcaoService;
     public Corretor cadastrar(Corretor corretor){
         corretorRepository.save(corretor);
         return corretor;

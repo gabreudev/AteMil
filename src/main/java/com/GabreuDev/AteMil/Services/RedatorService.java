@@ -1,30 +1,36 @@
 package com.GabreuDev.AteMil.Services;
 import com.GabreuDev.AteMil.Entities.Correcao;
 import com.GabreuDev.AteMil.Entities.Redator;
-import com.GabreuDev.AteMil.Entities.StatusEnum;
 import com.GabreuDev.AteMil.Repositories.RedatorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
+import static java.lang.String.format;
 
 @Service
+@RequiredArgsConstructor
 public class RedatorService {
 
-    @Autowired
-    private RedatorRepository redatorRepository;
+    private final RedatorRepository redatorRepository;
 
-    @Autowired
-    private CorrecaoService correcaoService;
+    private final CorrecaoService correcaoService;
 
     public Redator cadastrar(Redator redator){
-        redatorRepository.save(redator);
+        try {
+            redatorRepository.save(redator);
+        }catch (Exception e){
+            throw new RuntimeException(format("erro ao cadastrar o redator "+ e));
+        }
         return redator;
     }
 
     public void postar(Long id, Correcao redacao){
         correcaoService.postarRedacao(id, redacao);
-
+    }
+    public List<Redator> listar(){
+        List<Redator> redators = redatorRepository.findAll();
+        return redators;
     }
 }

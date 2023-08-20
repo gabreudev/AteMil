@@ -5,20 +5,20 @@ import com.GabreuDev.AteMil.Entities.Redator;
 import com.GabreuDev.AteMil.Entities.StatusEnum;
 import com.GabreuDev.AteMil.Repositories.CorrecaoRepository;
 import com.GabreuDev.AteMil.Repositories.RedatorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CorrecaoService {
 
-    @Autowired
-    private CorrecaoRepository correcaoRepository;
 
-    @Autowired
-    private RedatorRepository redatorRepository;
+    private final CorrecaoRepository correcaoRepository;
+
+
+    private final RedatorRepository redatorRepository;
 
     public Correcao postarRedacao( Long id, Correcao redacao){
         redacao = setarRedacoes(id, redacao);
@@ -41,6 +41,7 @@ public class CorrecaoService {
         if (optionalRedator.isPresent()) {
             Redator redator = optionalRedator.get();
             correcao.setStatus(StatusEnum.NAOCORRIGIDA);
+            correcaoRepository.save(correcao);
             redator.getCorrecao().add(correcao);
             redatorRepository.save(redator);
             return correcao;
