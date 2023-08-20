@@ -12,7 +12,6 @@ import java.util.List;
 public class Correcao {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     private String redacao;
@@ -21,5 +20,4 @@ public class Correcao {
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
-
 }

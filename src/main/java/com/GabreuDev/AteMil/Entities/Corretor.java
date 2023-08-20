@@ -10,7 +10,6 @@ import lombok.Setter;
 public class Corretor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     private String nome;

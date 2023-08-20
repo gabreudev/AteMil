@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,7 +14,6 @@ import java.util.List;
 public class Redator {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     private String nome;
@@ -21,6 +21,7 @@ public class Redator {
     private String email;
 
     @OneToMany
-    private List<Correcao> correcao;
+    @JoinColumn(name = "correcao_id")
+    private List<Correcao> correcao= new ArrayList<>();
 
 }
