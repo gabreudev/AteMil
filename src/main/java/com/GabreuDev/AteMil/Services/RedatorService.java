@@ -29,8 +29,5 @@ public class RedatorService {
     public void postar(Long id, Correcao redacao){
         correcaoService.postarRedacao(id, redacao);
     }
-    public List<Redator> listar(){
-        List<Redator> redators = redatorRepository.findAll();
-        return redators;
-    }
+
 }

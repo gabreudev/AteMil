@@ -8,6 +8,7 @@ import com.GabreuDev.AteMil.Repositories.RedatorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,11 @@ public class CorrecaoService {
 
 
     private final RedatorRepository redatorRepository;
+
+    public List<Correcao> listarRedacoesPendentes(StatusEnum status) {
+        List<Correcao> lista = correcaoRepository.findAllByStatus(StatusEnum.NAOCORRIGIDA);
+        return lista;
+    }
 
     public Correcao postarRedacao( Long id, Correcao redacao){
         redacao = setarRedacoes(id, redacao);

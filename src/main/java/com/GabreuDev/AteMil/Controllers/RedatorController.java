@@ -28,10 +28,5 @@ public class RedatorController {
         redatorService.postar(id, redacao);
         return ResponseEntity.ok("Redação postada com sucesso.");
     }
-    @GetMapping()
-    public ResponseEntity<List<Redator>> listar(){
-        List<Redator> redators = redatorService.listar();
-        return ResponseEntity.ok(redators);
-    }
 }
 
