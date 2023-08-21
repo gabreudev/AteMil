@@ -1,11 +1,11 @@
 package com.GabreuDev.AteMil.Services;
-import com.GabreuDev.AteMil.Entities.Correcao;
-import com.GabreuDev.AteMil.Entities.Redator;
+import com.GabreuDev.AteMil.Converters.CorrecaoConverter;
+import com.GabreuDev.AteMil.Converters.RedatorConverter;
+import com.GabreuDev.AteMil.Dtos.Request.NovaRedacaoDTO;
+import com.GabreuDev.AteMil.Dtos.Request.RedatorDTO;
 import com.GabreuDev.AteMil.Repositories.RedatorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 import static java.lang.String.format;
 
@@ -13,21 +13,23 @@ import static java.lang.String.format;
 @RequiredArgsConstructor
 public class RedatorService {
 
+    private final RedatorConverter redatorConverter;
+    private final CorrecaoConverter correcaoConverter;
     private final RedatorRepository redatorRepository;
 
     private final CorrecaoService correcaoService;
 
-    public Redator cadastrar(Redator redator){
+    public RedatorDTO cadastrar(RedatorDTO redator){
         try {
-            redatorRepository.save(redator);
+            redatorRepository.save(redatorConverter.toEntity(redator));
         }catch (Exception e){
             throw new RuntimeException(format("erro ao cadastrar o redator "+ e));
         }
         return redator;
     }
 
-    public void postar(Long id, Correcao redacao){
-        correcaoService.postarRedacao(id, redacao);
+    public void postar(Long id, NovaRedacaoDTO redacao){
+        correcaoService.postarRedacao(id, correcaoConverter.novaRedacaoToEntity(redacao));
     }
 
 }

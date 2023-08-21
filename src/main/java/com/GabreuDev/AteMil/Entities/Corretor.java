@@ -1,12 +1,14 @@
 package com.GabreuDev.AteMil.Entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Corretor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

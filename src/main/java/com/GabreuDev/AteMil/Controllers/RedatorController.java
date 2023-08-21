@@ -1,4 +1,7 @@
 package com.GabreuDev.AteMil.Controllers;
+import com.GabreuDev.AteMil.Dtos.Request.NovaRedacaoDTO;
+import com.GabreuDev.AteMil.Dtos.Request.RedatorDTO;
+import com.GabreuDev.AteMil.Dtos.Response.CorrecaoDTO;
 import com.GabreuDev.AteMil.Entities.Correcao;
 import com.GabreuDev.AteMil.Entities.Redator;
 import com.GabreuDev.AteMil.Services.RedatorService;
@@ -18,13 +21,13 @@ public class RedatorController {
     private final RedatorService redatorService;
 
     @PostMapping("")
-    public ResponseEntity<Redator> cadastrarRedator(@RequestBody Redator redator) {
-        Redator novoRedator = redatorService.cadastrar(redator);
+    public ResponseEntity<RedatorDTO> cadastrarRedator(@RequestBody RedatorDTO redator) {
+        RedatorDTO novoRedator = redatorService.cadastrar(redator);
         return ResponseEntity.ok(novoRedator);
     }
 
     @PostMapping("{id}/postar")
-    public ResponseEntity<String> postarRedacao(@PathVariable Long id, @RequestBody Correcao redacao) {
+    public ResponseEntity<String> postarRedacao(@PathVariable Long id, @RequestBody NovaRedacaoDTO redacao) {
         redatorService.postar(id, redacao);
         return ResponseEntity.ok("Redação postada com sucesso.");
     }

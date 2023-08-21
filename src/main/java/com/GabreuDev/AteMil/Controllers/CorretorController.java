@@ -1,5 +1,7 @@
 package com.GabreuDev.AteMil.Controllers;
 
+import com.GabreuDev.AteMil.Dtos.Request.CorretorDTO;
+import com.GabreuDev.AteMil.Dtos.Response.CorrecaoDTO;
 import com.GabreuDev.AteMil.Entities.Correcao;
 import com.GabreuDev.AteMil.Entities.Corretor;
 import com.GabreuDev.AteMil.Entities.Redator;
@@ -20,20 +22,20 @@ public class CorretorController {
     private final CorretorService corretorService;
 
     @PostMapping()
-    public ResponseEntity<Corretor> cadastrarCorretor(@RequestBody Corretor corretor) {
-        Corretor novoCorretor = corretorService.cadastrar(corretor);
+    public ResponseEntity<CorretorDTO> cadastrarCorretor(@RequestBody CorretorDTO corretor) {
+        CorretorDTO novoCorretor = corretorService.cadastrar(corretor);
         return ResponseEntity.ok(novoCorretor);
     }
 
     @PostMapping("{id}/corrigir")
-    public ResponseEntity<Correcao> corrigirRedacao(@PathVariable Long id, @RequestBody Correcao correcao) {
-        Correcao correcaoCorrigida = corretorService.corrigirRedacao(id, correcao);
+    public ResponseEntity<CorrecaoDTO> corrigirRedacao(@PathVariable Long id, @RequestBody CorrecaoDTO correcao) {
+        CorrecaoDTO correcaoCorrigida = corretorService.corrigirRedacao(id, correcao);
         return ResponseEntity.ok(correcaoCorrigida);
     }
     @GetMapping("")
-    public ResponseEntity<List<Correcao>> listarRedacoesPendentes(){
+    public ResponseEntity<List<CorrecaoDTO>> listarRedacoesPendentes(){
         StatusEnum status = StatusEnum.NAOCORRIGIDA;
-        List<Correcao> lista = corretorService.listarRedacoesPendentes(status);
+        List<CorrecaoDTO> lista = corretorService.listarRedacoesPendentes(status);
         return ResponseEntity.ok(lista);
     }
 
