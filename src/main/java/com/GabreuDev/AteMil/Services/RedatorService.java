@@ -3,6 +3,7 @@ import com.GabreuDev.AteMil.Converters.CorrecaoConverter;
 import com.GabreuDev.AteMil.Converters.RedatorConverter;
 import com.GabreuDev.AteMil.Dtos.Request.NovaRedacaoDTO;
 import com.GabreuDev.AteMil.Dtos.Request.RedatorDTO;
+import com.GabreuDev.AteMil.Handlers.SaveErrorException;
 import com.GabreuDev.AteMil.Repositories.RedatorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class RedatorService {
         try {
             redatorRepository.save(redatorConverter.toEntity(redator));
         }catch (Exception e){
-            throw new RuntimeException(format("erro ao cadastrar o redator "+ e));
+            throw new SaveErrorException("redator");
         }
         return redator;
     }

@@ -10,7 +10,6 @@ import java.util.List;
 @Component
 public class CorrecaoConverter {
     public Correcao toEntity(CorrecaoDTO dto){
-
         return Correcao.builder()
                 .id(dto.id())
                 .redacao(dto.redacao())

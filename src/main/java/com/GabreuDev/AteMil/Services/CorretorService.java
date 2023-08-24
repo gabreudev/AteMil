@@ -7,6 +7,8 @@ import com.GabreuDev.AteMil.Dtos.Response.CorrecaoDTO;
 import com.GabreuDev.AteMil.Entities.Correcao;
 import com.GabreuDev.AteMil.Entities.Corretor;
 import com.GabreuDev.AteMil.Entities.StatusEnum;
+import com.GabreuDev.AteMil.Handlers.BusinessException;
+import com.GabreuDev.AteMil.Handlers.SaveErrorException;
 import com.GabreuDev.AteMil.Repositories.CorretorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,9 +22,14 @@ public class CorretorService {
     private final CorretorConverter corretorConverter;
     private final CorrecaoService correcaoService;
     public CorretorDTO cadastrar(CorretorDTO corretor){
-        corretorRepository.save(corretorConverter.toEntity(corretor));
+        try {
+            corretorRepository.save(corretorConverter.toEntity(corretor));
         return corretor;
+    }catch (Exception exception){
+            throw new SaveErrorException("corretor");
+        }
     }
+
     public CorrecaoDTO corrigirRedacao(Long id, CorrecaoDTO correcao) {
         return correcaoService.corrigirRedacao(id, correcaoConverter.toEntity(correcao));
 
