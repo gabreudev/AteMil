@@ -2,9 +2,7 @@ package com.GabreuDev.AteMil.Controllers;
 
 import com.GabreuDev.AteMil.Dtos.Request.CorretorDTO;
 import com.GabreuDev.AteMil.Dtos.Response.CorrecaoDTO;
-import com.GabreuDev.AteMil.Entities.Correcao;
 import com.GabreuDev.AteMil.Entities.Corretor;
-import com.GabreuDev.AteMil.Entities.Redator;
 import com.GabreuDev.AteMil.Entities.StatusEnum;
 import com.GabreuDev.AteMil.Services.CorretorService;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +36,10 @@ public class CorretorController {
         List<CorrecaoDTO> lista = corretorService.listarRedacoesPendentes(status);
         return ResponseEntity.ok(lista);
     }
-
+    @GetMapping("corretores")
+    public ResponseEntity<List<Corretor>> listarCorretores() {
+        List<Corretor> lista = corretorService.listarCorretores();
+        return ResponseEntity.ok(lista);
+    }
 }
 

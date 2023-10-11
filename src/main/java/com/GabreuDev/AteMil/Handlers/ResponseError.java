@@ -12,5 +12,4 @@ public class ResponseError {
     private int statusCode = 400;
     private String error;
 
-    //getters e setters
 }

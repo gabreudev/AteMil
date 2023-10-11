@@ -12,12 +12,16 @@ public class CorretorConverter {
         return Corretor.builder()
                 .nome(dto.nome())
                 .email(dto.email())
+                .username(dto.username())
+                .senha(dto.senha())
                 .build();
     }
     public CorretorDTO toDto(Corretor entity){
         return CorretorDTO.builder()
                 .nome(entity.getNome())
                 .email(entity.getEmail())
+                .username(entity.getUsername())
+                .senha(entity.getSenha())
                 .build();
     }
 }

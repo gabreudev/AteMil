@@ -4,10 +4,8 @@ import com.GabreuDev.AteMil.Converters.CorrecaoConverter;
 import com.GabreuDev.AteMil.Converters.CorretorConverter;
 import com.GabreuDev.AteMil.Dtos.Request.CorretorDTO;
 import com.GabreuDev.AteMil.Dtos.Response.CorrecaoDTO;
-import com.GabreuDev.AteMil.Entities.Correcao;
 import com.GabreuDev.AteMil.Entities.Corretor;
 import com.GabreuDev.AteMil.Entities.StatusEnum;
-import com.GabreuDev.AteMil.Handlers.BusinessException;
 import com.GabreuDev.AteMil.Handlers.SaveErrorException;
 import com.GabreuDev.AteMil.Repositories.CorretorRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +34,11 @@ public class CorretorService {
     }
     public List<CorrecaoDTO> listarRedacoesPendentes(StatusEnum status){
         List<CorrecaoDTO> lista = correcaoService.listarRedacoesPendentes(status.NAOCORRIGIDA);
+        return lista;
+    }
+
+    public List<Corretor> listarCorretores() {
+        List<Corretor> lista = corretorRepository.findAll();
         return lista;
     }
 }
